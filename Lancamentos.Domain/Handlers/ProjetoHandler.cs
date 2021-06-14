@@ -39,7 +39,7 @@ namespace Lancamentos.Domain.Handlers
                 return new GenericCommandResult(false, "ops, Por favor reveja os campos preenchidos",
                     command.Notifications);
 
-            var projeto = _repository.GetById(command.Id);
+            var projeto = _repository.GetId(command.Id);
 
             projeto.UpdateTitle(command.NomeProjeto, command.Tipo);
 

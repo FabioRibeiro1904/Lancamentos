@@ -10,15 +10,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lancamentos.Infra.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210601004601_v2")]
-    partial class v2
+    [Migration("20210609123431_v1")]
+    partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.6")
+                .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Lancamentos.Domain.Entities.Desenvolvedor", b =>
@@ -38,9 +38,14 @@ namespace Lancamentos.Infra.Migrations
                     b.Property<Guid?>("ProjetoId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("ProjetoId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProjetoId");
+
+                    b.HasIndex("ProjetoId1");
 
                     b.ToTable("Desenvolvedor");
                 });
@@ -48,7 +53,6 @@ namespace Lancamentos.Infra.Migrations
             modelBuilder.Entity("Lancamentos.Domain.Entities.Lancamento", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataFim")
@@ -57,12 +61,7 @@ namespace Lancamentos.Infra.Migrations
                     b.Property<DateTime>("DataInicio")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("DesenvolvedorId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("DesenvolvedorId");
 
                     b.ToTable("Lancamento");
                 });
@@ -83,14 +82,21 @@ namespace Lancamentos.Infra.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Id")
+                        .HasDatabaseName("ProjetoId");
+
                     b.ToTable("Projeto");
                 });
 
             modelBuilder.Entity("Lancamentos.Domain.Entities.Desenvolvedor", b =>
                 {
                     b.HasOne("Lancamentos.Domain.Entities.Projeto", "Projeto")
-                        .WithMany("Desenvolvedors")
+                        .WithMany()
                         .HasForeignKey("ProjetoId");
+
+                    b.HasOne("Lancamentos.Domain.Entities.Projeto", null)
+                        .WithMany("Desenvolvedors")
+                        .HasForeignKey("ProjetoId1");
 
                     b.Navigation("Projeto");
                 });
@@ -99,7 +105,7 @@ namespace Lancamentos.Infra.Migrations
                 {
                     b.HasOne("Lancamentos.Domain.Entities.Desenvolvedor", "Desenvolvedor")
                         .WithMany("Lancamentos")
-                        .HasForeignKey("DesenvolvedorId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

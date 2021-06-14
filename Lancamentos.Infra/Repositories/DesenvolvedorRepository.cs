@@ -18,40 +18,20 @@ namespace Lancamentos.Infra.Repositories
             _context = context;
         }
 
-        public void addLancamento(Lancamento desenvolvedor)
-        {
-            _context.Entry(desenvolvedor).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
         public void Create(Desenvolvedor desenvolvedor)
         {
             _context.Desenvolvedores.Add(desenvolvedor);
             _context.SaveChanges();
         }
 
-        public Desenvolvedor GetByName(Guid id, string nome)
-        {
-            return _context.Desenvolvedores.AsNoTracking().FirstOrDefault(DesenvolvedorQueries.GetDesenvolvedor(nome));
-        }
-
         public Desenvolvedor GetId(Guid id)
         {
-            return _context.Desenvolvedores.AsNoTracking().FirstOrDefault(DesenvolvedorQueries.GetId(id));
+            return _context.Desenvolvedores.Find(id);
 
+            //        return _context.Desenvolvedores.AsNoTracking()
+           //.Include(x => x.Projeto)
+          //.FirstOrDefault(DesenvolvedorQueries.GetId(id));
         }
-
-        public IEnumerable<Lancamento> WorkHours(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Desenvolvedor GetById(Guid id, string nome)
-        {
-            return _context.Desenvolvedores
-                .FirstOrDefault(x => x.Id == id && x.Nome == nome);
-        }
-
         public void Update(Desenvolvedor desenvolvedor)
         {
             _context.Entry(desenvolvedor).State = EntityState.Modified;
@@ -68,7 +48,10 @@ namespace Lancamentos.Infra.Repositories
 
         public IEnumerable<Desenvolvedor> GetList()
         {
-            return _context.Desenvolvedores.AsNoTracking().ToList();
+            return _context.Desenvolvedores.AsNoTracking()
+                .Include(x=>x.Projeto)
+                .AsNoTracking()
+                .ToList();
         }
     }
 }

@@ -11,6 +11,11 @@ public class LancamentoMapping : IEntityTypeConfiguration<Lancamento>
         builder.Property(x => x.DataInicio);
         builder.Property(x => x.DataFim);
 
+
+        builder.HasOne(x => x.Desenvolvedor)
+            .WithMany(x => x.Lancamentos)
+            .HasForeignKey(x => x.Id);
+
     }
 }
 

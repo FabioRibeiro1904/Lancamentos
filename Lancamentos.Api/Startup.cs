@@ -29,6 +29,8 @@ namespace Lancamentos.Api
             services.AddTransient<IDesenvolvedorRepository, DesenvolvedorRepository>();
             services.AddTransient<ProjetoHandler, ProjetoHandler>();
             services.AddTransient<IProjetoRepository, ProjetoRepository>();
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
 
         }
 
@@ -41,6 +43,7 @@ namespace Lancamentos.Api
             }
 
             app.UseHttpsRedirection();
+
 
             app.UseRouting();
 

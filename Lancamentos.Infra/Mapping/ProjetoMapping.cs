@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
             builder.Property(x => x.NomeProjeto).HasMaxLength(30).HasColumnType("varchar(30)");
             builder.Property(x => x.Tipo).HasMaxLength(30).HasColumnType("varchar(30)");
 
+        builder.HasIndex(x => x.Id)
+            .HasDatabaseName("ProjetoId");
         }
     }
 

@@ -4,26 +4,22 @@ using System.Linq;
 
 namespace Lancamentos.Domain.Entities
 {
-    public class Desenvolvedor : Entity
+    public class Desenvolvedor :Entity
     {
-        private List<Lancamento> _lancamento;
 
         public Desenvolvedor(string nome, string cargo)
         {
             Nome = nome;
             Cargo = cargo;
-            _lancamento = new List<Lancamento>();
+            Lancamentos = new List<Lancamento>();
         }
 
         public string Nome { get; private set; }
 
         public string Cargo { get; private set; }
 
-        public Projeto Projeto { get; private set; }
+        public Projeto Projeto { get;  private set; }
 
-        public Guid? ProjetoId { get; private set; }
-
-        //public IReadOnlyCollection<Lancamento> Lancamentos { get { return _lancamento.ToArray(); } }
 
         public IList<Lancamento> Lancamentos { get; private set; }
 
@@ -40,7 +36,7 @@ namespace Lancamentos.Domain.Entities
 
         public void addLancamento(Lancamento lancameto)
         {
-            _lancamento.Add(lancameto);
+            Lancamentos.Add(lancameto);
         }
 
         public void AddProjeto(Projeto projeto)

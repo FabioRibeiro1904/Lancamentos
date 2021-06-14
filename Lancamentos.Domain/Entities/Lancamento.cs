@@ -8,13 +8,14 @@ namespace Lancamentos.Domain.Entities
         {
             DataInicio = dataInicio;
             DataFim = dataFim;
+
         }
 
         public DateTime DataInicio { get; private set; }
 
         public DateTime DataFim { get; private set; }
 
-        public Desenvolvedor Desenvolvedor { get; private set; }
+        public Desenvolvedor Desenvolvedor { get;  private set; }
 
     }
 }

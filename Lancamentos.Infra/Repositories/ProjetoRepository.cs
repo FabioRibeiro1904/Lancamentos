@@ -31,9 +31,10 @@ namespace Lancamentos.Infra.Repositories
             _context.SaveChanges();
         }
 
-        public Projeto GetById(Guid id)
+        public Projeto GetId(Guid id)
         {
-            return _context.Projetos.AsNoTracking().FirstOrDefault(ProjetoQueries.GetById(id));
+            //return _context.Projetos.AsNoTracking().FirstOrDefault(ProjetoQueries.GetById(id));
+            return _context.Projetos.Find(id);
         }
 
         public IEnumerable<Projeto> GetList()

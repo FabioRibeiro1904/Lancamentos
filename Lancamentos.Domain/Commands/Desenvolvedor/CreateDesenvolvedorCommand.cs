@@ -1,6 +1,7 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
 using Lancamentos.Domain.Commands.Contracts;
+using Lancamentos.Domain.Entities;
 
 namespace Lancamentos.Domain.Commands.Desenvolvedor
 {

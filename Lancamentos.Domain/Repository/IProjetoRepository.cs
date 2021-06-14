@@ -12,7 +12,7 @@ namespace Lancamentos.Domain.Repository
 
         void Delete(Guid id);
 
-        Projeto GetById(Guid id);
+        Projeto GetId(Guid id);
 
         IEnumerable<Projeto> GetList();
     }

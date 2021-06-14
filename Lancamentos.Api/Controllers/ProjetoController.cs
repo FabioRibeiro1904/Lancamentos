@@ -24,7 +24,7 @@ namespace Lancamentos.Api.Controllers
         [FromServices] IProjetoRepository repository)
 
         {
-            var getById = repository.GetById(id);
+            var getById = repository.GetId(id);
             return Ok(getById);
         }
 

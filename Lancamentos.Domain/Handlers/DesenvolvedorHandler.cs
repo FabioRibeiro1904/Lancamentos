@@ -62,14 +62,13 @@ namespace Lancamentos.Domain.Handlers
 
             var desenvolvedor = _repository.GetId(command.Id);
 
-            var projeto = _repositoryProjeto.GetById(command.ProjetoId);
+            var projeto = _repositoryProjeto.GetId(command.ProjetoId);
 
-            //projeto.AddDesenvolvedor(desenvolvedor);
             desenvolvedor.AddProjeto(projeto);
 
             _repository.Update(desenvolvedor);
 
-            return new GenericCommandResult(true, "Projeto adicionado com sucesso", projeto);
+            return new GenericCommandResult(true, "Projeto adicionado com sucesso", desenvolvedor);
 
             
         }

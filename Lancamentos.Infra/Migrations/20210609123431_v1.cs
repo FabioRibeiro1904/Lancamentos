@@ -12,7 +12,7 @@ namespace Lancamentos.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Nome = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true),
+                    NomeProjeto = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true),
                     Tipo = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                 },
                 constraints: table =>
@@ -27,7 +27,8 @@ namespace Lancamentos.Infra.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: true),
                     Cargo = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: true),
-                    ProjetoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    ProjetoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ProjetoId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -35,6 +36,12 @@ namespace Lancamentos.Infra.Migrations
                     table.ForeignKey(
                         name: "FK_Desenvolvedor_Projeto_ProjetoId",
                         column: x => x.ProjetoId,
+                        principalTable: "Projeto",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Desenvolvedor_Projeto_ProjetoId1",
+                        column: x => x.ProjetoId1,
                         principalTable: "Projeto",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -46,15 +53,14 @@ namespace Lancamentos.Infra.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DataInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DataFim = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DesenvolvedorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    DataFim = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Lancamento", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Lancamento_Desenvolvedor_DesenvolvedorId",
-                        column: x => x.DesenvolvedorId,
+                        name: "FK_Lancamento_Desenvolvedor_Id",
+                        column: x => x.Id,
                         principalTable: "Desenvolvedor",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -66,9 +72,14 @@ namespace Lancamentos.Infra.Migrations
                 column: "ProjetoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Lancamento_DesenvolvedorId",
-                table: "Lancamento",
-                column: "DesenvolvedorId");
+                name: "IX_Desenvolvedor_ProjetoId1",
+                table: "Desenvolvedor",
+                column: "ProjetoId1");
+
+            migrationBuilder.CreateIndex(
+                name: "ProjetoId",
+                table: "Projeto",
+                column: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

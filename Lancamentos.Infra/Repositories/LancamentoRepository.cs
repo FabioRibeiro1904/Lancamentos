@@ -27,9 +27,5 @@ namespace Lancamentos.Infra.Repositories
             return _context.Lancamentos.AsNoTracking().ToList();
         }
 
-        //public Lancamento GetByName(string nome)
-        //{
-        //    return _context.Desenvolvedores.AsNoTracking().FirstOrDefault(LancamentoQueries.GetDesenvolvedor(nome));
-        //}
     }
 }
