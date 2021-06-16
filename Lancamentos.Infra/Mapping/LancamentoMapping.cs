@@ -13,8 +13,7 @@ public class LancamentoMapping : IEntityTypeConfiguration<Lancamento>
 
 
         builder.HasOne(x => x.Desenvolvedor)
-            .WithMany(x => x.Lancamentos)
-            .HasForeignKey(x => x.Id);
+            .WithMany(x => x.Lancamentos);
 
     }
 }

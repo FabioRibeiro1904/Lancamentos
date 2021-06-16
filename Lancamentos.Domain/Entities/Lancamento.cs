@@ -17,5 +17,10 @@ namespace Lancamentos.Domain.Entities
 
         public Desenvolvedor Desenvolvedor { get;  private set; }
 
+        public void AddDesenvolvedor( Desenvolvedor desenvolvedor)
+        {
+            Desenvolvedor = desenvolvedor;
+        }
+
     }
 }

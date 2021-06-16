@@ -29,6 +29,7 @@ namespace Lancamentos.Domain.Commands.Desenvolvedor
                 .HasMinLen(Nome, 3, "Nome", "Por favor, digite o nome completo!")
                 .HasMinLen(Cargo, 3, "Cargo", "Descreva um cargo")
                 );
+
         }
     }
 }

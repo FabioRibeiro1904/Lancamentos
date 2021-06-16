@@ -46,6 +46,7 @@ namespace Lancamentos.Infra.Migrations
             modelBuilder.Entity("Lancamentos.Domain.Entities.Lancamento", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataFim")
@@ -54,7 +55,12 @@ namespace Lancamentos.Infra.Migrations
                     b.Property<DateTime>("DataInicio")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("DesenvolvedorId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("DesenvolvedorId");
 
                     b.ToTable("Lancamento");
                 });
@@ -94,9 +100,7 @@ namespace Lancamentos.Infra.Migrations
                 {
                     b.HasOne("Lancamentos.Domain.Entities.Desenvolvedor", "Desenvolvedor")
                         .WithMany("Lancamentos")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DesenvolvedorId");
 
                     b.Navigation("Desenvolvedor");
                 });

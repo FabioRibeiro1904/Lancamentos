@@ -33,7 +33,6 @@ namespace Lancamentos.Infra.Repositories
 
         public Projeto GetId(Guid id)
         {
-            //return _context.Projetos.AsNoTracking().FirstOrDefault(ProjetoQueries.GetById(id));
             return _context.Projetos.Find(id);
         }
 

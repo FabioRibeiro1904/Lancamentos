@@ -8,7 +8,7 @@ using Lancamentos.Domain.Repository;
 
 namespace Lancamentos.Domain.Handlers
 {
-    public class DesenvolvedorHandler : Notifiable,
+    public class DesenvolvedorHandler:
         IHandler<CreateDesenvolvedorCommand>, IHandler<UpdateDesenvolvedorCommand>, IHandler<AddProjetoDesenvolvedorCommand>
 
 
@@ -69,10 +69,6 @@ namespace Lancamentos.Domain.Handlers
             _repository.Update(desenvolvedor);
 
             return new GenericCommandResult(true, "Projeto adicionado com sucesso", desenvolvedor);
-
-            
         }
-
-
     }
 }

@@ -29,6 +29,8 @@ namespace Lancamentos.Api
             services.AddTransient<IDesenvolvedorRepository, DesenvolvedorRepository>();
             services.AddTransient<ProjetoHandler, ProjetoHandler>();
             services.AddTransient<IProjetoRepository, ProjetoRepository>();
+            services.AddTransient<LancamentoHandler, LancamentoHandler>();
+            services.AddTransient<ILancamentoRepository, LancamentoRepository>();
             services.AddControllersWithViews().AddNewtonsoftJson(options =>options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
 

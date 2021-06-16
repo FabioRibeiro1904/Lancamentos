@@ -6,9 +6,9 @@ namespace Lancamentos.Domain.Queries
 {
     public static class LancamentoQueries
     {
-        public static Expression<Func<Lancamento, bool>> GetLancamento(Guid nome)
+        public static Expression<Func<Lancamento, bool>> GetLancamento(Guid id)
         {
-            return x => x.Id == nome;
+            return x => x.Id == id;
         }
     }
 }

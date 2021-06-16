@@ -1,5 +1,4 @@
-﻿using Flunt.Notifications;
-using Lancamentos.Domain.Commands;
+﻿using Lancamentos.Domain.Commands;
 using Lancamentos.Domain.Commands.Contracts;
 using Lancamentos.Domain.Entities;
 using Lancamentos.Domain.Handlers.Contracts;
@@ -7,7 +6,7 @@ using Lancamentos.Domain.Repository;
 
 namespace Lancamentos.Domain.Handlers
 {
-    public class ProjetoHandler : Notifiable,
+    public class ProjetoHandler : 
         IHandler<CreateProjetoCommand>, IHandler<UpdateProjetoCommand>
     {
 

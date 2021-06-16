@@ -26,11 +26,7 @@ namespace Lancamentos.Infra.Repositories
 
         public Desenvolvedor GetId(Guid id)
         {
-            return _context.Desenvolvedores.Find(id);
-
-            //        return _context.Desenvolvedores.AsNoTracking()
-           //.Include(x => x.Projeto)
-          //.FirstOrDefault(DesenvolvedorQueries.GetId(id));
+            return _context.Desenvolvedores.AsNoTracking().FirstOrDefault(DesenvolvedorQueries.GetId(id));
         }
         public void Update(Desenvolvedor desenvolvedor)
         {

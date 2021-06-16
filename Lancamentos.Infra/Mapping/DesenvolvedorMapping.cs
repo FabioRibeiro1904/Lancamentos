@@ -24,8 +24,7 @@ namespace Lancamentos.Infra.Mapping
 
 
             builder.HasOne(x => x.Projeto)
-                .WithMany(x=>x.Desenvolvedors)
-                .HasForeignKey("ProjetoId");
+                .WithMany(x=>x.Desenvolvedors);
 
 
 

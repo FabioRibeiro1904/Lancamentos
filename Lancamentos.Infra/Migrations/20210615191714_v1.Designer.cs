@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lancamentos.Infra.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210609124749_v2")]
-    partial class v2
+    [Migration("20210615191714_v1")]
+    partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,6 +48,7 @@ namespace Lancamentos.Infra.Migrations
             modelBuilder.Entity("Lancamentos.Domain.Entities.Lancamento", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataFim")
@@ -56,7 +57,12 @@ namespace Lancamentos.Infra.Migrations
                     b.Property<DateTime>("DataInicio")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("DesenvolvedorId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("DesenvolvedorId");
 
                     b.ToTable("Lancamento");
                 });
@@ -96,9 +102,7 @@ namespace Lancamentos.Infra.Migrations
                 {
                     b.HasOne("Lancamentos.Domain.Entities.Desenvolvedor", "Desenvolvedor")
                         .WithMany("Lancamentos")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DesenvolvedorId");
 
                     b.Navigation("Desenvolvedor");
                 });
